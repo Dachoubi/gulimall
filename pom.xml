@@ -4,22 +4,26 @@
 
     <modelVersion>4.0.0</modelVersion>
 
+    <!-- 项目描述 -->
     <groupId>com.atguigu.gulimall</groupId>
     <artifactId>gulimall</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-
     <name>gulimall</name>
-
     <description>聚合服务</description>
 
+    <!-- 项目类型 -->
     <packaging>pom</packaging>
 
+    <!-- 引入模块 -->
     <modules>
+        <module>gulimall-common</module>
         <module>gulimall-coupon</module>
         <module>gulimall-member</module>
         <module>gulimall-order</module>
         <module>gulimall-product</module>
         <module>gulimall-ware</module>
+        <module>renren-fast</module>
+        <module>renren-generator</module>
     </modules>
 
 </project>
