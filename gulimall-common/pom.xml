@@ -4,14 +4,29 @@
 
 	<modelVersion>4.0.0</modelVersion>
 
+<!--	<parent>-->
+<!--		<groupId>com.atguigu.gulimall</groupId>-->
+<!--		<artifactId>gulimall</artifactId>-->
+<!--		<version>0.0.1-SNAPSHOT</version>-->
+<!--	</parent>-->
+
+	<!-- spring boot 版本 -->
 	<parent>
-		<groupId>com.atguigu.gulimall</groupId>
-		<artifactId>gulimall</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.1.8.RELEASE</version>
+		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
+	<!-- jar包版本 -->
+	<properties>
+		<shiro.version>1.9.0</shiro.version>
+	</properties>
+
 	<!-- 项目描述 -->
+	<groupId>com.atguigu.gulimall</groupId>
 	<artifactId>gulimall-common</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
 	<description>每个微服务公共的依赖，bean，工具类等</description>
 
 	<!--
@@ -20,6 +35,11 @@
 	 	 然后其它的工程引入这个工程就可以不报错了。
 	 -->
 	<dependencies>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
 
 		<!-- mybatis-plus -->
 		<dependency>
@@ -59,6 +79,18 @@
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
 			<version>2.5</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.shiro</groupId>
+			<artifactId>shiro-core</artifactId>
+			<version>${shiro.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.shiro</groupId>
+			<artifactId>shiro-spring</artifactId>
+			<version>${shiro.version}</version>
 		</dependency>
 
 	</dependencies>
