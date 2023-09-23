@@ -18,9 +18,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
-	<!-- jar包版本 -->
+	<!-- properties -->
 	<properties>
 		<shiro.version>1.9.0</shiro.version>
+		<spring-cloud.version>Greenwich.SR3</spring-cloud.version>
 	</properties>
 
 	<!-- 项目描述 -->
@@ -33,12 +34,22 @@
 	     这个common项目，引入jar和utils的规则是，由于逆向工程生成的代码中没有依赖和对应的utils类
 	 	 而在renren-fast中有对应的utils类，则把对应的pom依赖和utils类copy到当前的common中，
 	 	 然后其它的工程引入这个工程就可以不报错了。
+
+	 	 此外，除了引用逆向工程所需要的jar外，还引入了公共的jar包。
 	 -->
 	<dependencies>
 
+		<!-- web开发 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<!-- 单元测试-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
 		</dependency>
 
 		<!-- mybatis-plus -->
@@ -69,6 +80,12 @@
 			<version>4.5.6</version>
 		</dependency>
 
+		<!-- 远程调用 -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-openfeign</artifactId>
+		</dependency>
+
 		<dependency>
 			<groupId>commons-lang</groupId>
 			<artifactId>commons-lang</artifactId>
@@ -81,12 +98,14 @@
 			<version>2.5</version>
 		</dependency>
 
+		<!-- 安全框架shiro -->
 		<dependency>
 			<groupId>org.apache.shiro</groupId>
 			<artifactId>shiro-core</artifactId>
 			<version>${shiro.version}</version>
 		</dependency>
 
+		<!-- 安全框架shiro -->
 		<dependency>
 			<groupId>org.apache.shiro</groupId>
 			<artifactId>shiro-spring</artifactId>
@@ -94,5 +113,18 @@
 		</dependency>
 
 	</dependencies>
+
+	<!-- 依赖管理 -->
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>${spring-cloud.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 
 </project>
