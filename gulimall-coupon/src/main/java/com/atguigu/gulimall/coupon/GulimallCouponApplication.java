@@ -3,6 +3,7 @@ package com.atguigu.gulimall.coupon;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 /** 
  * @Description: TODO 引入mybatis-plus的jar
@@ -12,6 +13,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @Date: 2023/9/23 21:46
  */
 @SpringBootApplication
+@EnableDiscoveryClient
 @MapperScan("com.atguigu.gulimall.coupon.dao")
 public class GulimallCouponApplication {
 

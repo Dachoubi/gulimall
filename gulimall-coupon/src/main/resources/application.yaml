@@ -5,6 +5,12 @@ spring:
     username: root
     password: root
     driver-class-name: com.mysql.jdbc.Driver
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+  application:
+    name: gulimall-coupon
 
 #配置mybatis-plus
 mybatis-plus:
@@ -17,4 +23,4 @@ mybatis-plus:
 
 #server
 server:
-  port: 7000
+  port: 7001
