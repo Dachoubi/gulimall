@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 
 import java.math.BigDecimal;
 import java.io.Serializable;
-
+import java.util.Date;
 import lombok.Data;
 
 /**
@@ -13,7 +13,7 @@ import lombok.Data;
  * 
  * @author qiaotao
  * @email 2294073149@qq.com
- * @date 2023-09-22 23:21:12
+ * @date 2023-09-23 23:14:02
  */
 @Data
 @TableName("sms_sku_full_reduction")
