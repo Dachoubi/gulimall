@@ -6,6 +6,8 @@ import java.util.Map;
 
 //import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,24 +29,39 @@ import com.atguigu.common.utils.R;
  * @date 2023-09-23 23:14:02
  */
 @RestController
+@RefreshScope //可以用@Value和@ConfigrationProperties来获取配置中心的配置
 @RequestMapping("coupon/coupon")
 public class CouponController {
 
     @Autowired
     private CouponService couponService;
 
+    @Value("${q.user.name}")
+    private String username;
+
+    @Value("${q.user.age}")
+    private String age;
+
+    @Value("${q.user.like}")
+    private String like;
+
     /** 
      * @Description: TODO 得到会员的优惠卷
      * @Author: qiaotao 
      * @Date: 2023/9/24 18:34
      */
-    @RequestMapping("coupon/list")
+    @RequestMapping("/coupon/list")
     public R couponList(){
 
         CouponEntity couponEntity = new CouponEntity();
         couponEntity.setCouponName("满100减10");
 
         return R.ok().put("coupons", Arrays.asList(couponEntity));
+    }
+
+    @RequestMapping("/config")
+    public R config(){
+        return R.ok().put("username", username).put("age",age).put("like",like);
     }
 
     /**
