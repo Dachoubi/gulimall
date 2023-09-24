@@ -1,6 +1,5 @@
 package com.atguigu.gulimall.coupon.controller;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Map;
 
@@ -12,48 +11,33 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.atguigu.gulimall.coupon.entity.CouponEntity;
-import com.atguigu.gulimall.coupon.service.CouponService;
+import com.atguigu.gulimall.coupon.entity.HomeSubjectEntity;
+import com.atguigu.gulimall.coupon.service.HomeSubjectService;
 import com.atguigu.common.utils.PageUtils;
 import com.atguigu.common.utils.R;
 
 
 
 /**
- * 优惠券信息
+ * 首页专题表【jd首页下面很多专题，每个专题链接新的页面，展示专题商品信息】
  *
  * @author qiaotao
  * @email 2294073149@qq.com
  * @date 2023-09-23 23:14:02
  */
 @RestController
-@RequestMapping("coupon/coupon")
-public class CouponController {
-
+@RequestMapping("coupon/homesubject")
+public class HomeSubjectController {
     @Autowired
-    private CouponService couponService;
-
-    /** 
-     * @Description: TODO 得到会员的优惠卷
-     * @Author: qiaotao 
-     * @Date: 2023/9/24 18:34
-     */
-    @RequestMapping("coupon/list")
-    public R couponList(){
-
-        CouponEntity couponEntity = new CouponEntity();
-        couponEntity.setCouponName("满100减10");
-
-        return R.ok().put("coupons", Arrays.asList(couponEntity));
-    }
+    private HomeSubjectService homeSubjectService;
 
     /**
      * 列表
      */
     @RequestMapping("/list")
-    //@RequiresPermissions("coupon:coupon:list")
+    //@RequiresPermissions("coupon:homesubject:list")
     public R list(@RequestParam Map<String, Object> params){
-        PageUtils page = couponService.queryPage(params);
+        PageUtils page = homeSubjectService.queryPage(params);
 
         return R.ok().put("page", page);
     }
@@ -63,20 +47,20 @@ public class CouponController {
      * 信息
      */
     @RequestMapping("/info/{id}")
-    //@RequiresPermissions("coupon:coupon:info")
+    //@RequiresPermissions("coupon:homesubject:info")
     public R info(@PathVariable("id") Long id){
-		CouponEntity coupon = couponService.getById(id);
+		HomeSubjectEntity homeSubject = homeSubjectService.getById(id);
 
-        return R.ok().put("coupon", coupon);
+        return R.ok().put("homeSubject", homeSubject);
     }
 
     /**
      * 保存
      */
     @RequestMapping("/save")
-    //@RequiresPermissions("coupon:coupon:save")
-    public R save(@RequestBody CouponEntity coupon){
-		couponService.save(coupon);
+    //@RequiresPermissions("coupon:homesubject:save")
+    public R save(@RequestBody HomeSubjectEntity homeSubject){
+		homeSubjectService.save(homeSubject);
 
         return R.ok();
     }
@@ -85,9 +69,9 @@ public class CouponController {
      * 修改
      */
     @RequestMapping("/update")
-    //@RequiresPermissions("coupon:coupon:update")
-    public R update(@RequestBody CouponEntity coupon){
-		couponService.updateById(coupon);
+    //@RequiresPermissions("coupon:homesubject:update")
+    public R update(@RequestBody HomeSubjectEntity homeSubject){
+		homeSubjectService.updateById(homeSubject);
 
         return R.ok();
     }
@@ -96,9 +80,9 @@ public class CouponController {
      * 删除
      */
     @RequestMapping("/delete")
-    //@RequiresPermissions("coupon:coupon:delete")
+    //@RequiresPermissions("coupon:homesubject:delete")
     public R delete(@RequestBody Long[] ids){
-		couponService.removeByIds(Arrays.asList(ids));
+		homeSubjectService.removeByIds(Arrays.asList(ids));
 
         return R.ok();
     }
