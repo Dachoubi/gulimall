@@ -33,13 +33,6 @@
 			<artifactId>gulimall-common</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 			<exclusions>
-
-				<!-- 移除common中的web，该jar与gateway冲突 -->
-				<exclusion>
-					<groupId>org.springframework.boot</groupId>
-					<artifactId>spring-boot-starter-web</artifactId>
-				</exclusion>
-
 				<!-- springcloud的gateway使用的是webflux,默认使用netty,所以从依赖中排除tomcat相关的依赖就可以了 -->
 				<exclusion>
 					<groupId>org.springframework.boot</groupId>
