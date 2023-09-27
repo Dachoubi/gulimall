@@ -55,6 +55,19 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
     }
 
     /** 
+     * @Description: TODO 逻辑删除
+     * @Author: qiaotao 
+     * @Date: 2023/9/27 21:46
+     */
+    @Override
+    public void removeLogicByIds(List<Long> list) {
+
+        //TODO 检查当前的菜单,是否被别的地方引用。
+
+        int i = baseMapper.deleteBatchIds(list);
+    }
+
+    /** 
      * @Description: TODO 得到子菜单集合
      * @Author: qiaotao 
      * @Date: 2023/9/27 10:15

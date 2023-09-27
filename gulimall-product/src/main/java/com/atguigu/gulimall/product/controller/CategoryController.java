@@ -100,4 +100,16 @@ public class CategoryController {
         return R.ok();
     }
 
+    /** 
+     * @Description: TODO 进行逻辑删除
+     * @Author: qiaotao 
+     * @Date: 2023/9/27 21:45
+     */
+    @RequestMapping("/delete/logic")
+    //@RequiresPermissions("product:category:delete")
+    public R deleteLogic(@RequestBody Long[] catIds){
+        categoryService.removeLogicByIds(Arrays.asList(catIds));
+        return R.ok();
+    }
+
 }

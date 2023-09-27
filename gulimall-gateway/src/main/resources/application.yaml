@@ -8,8 +8,16 @@ spring:
       #http://localhost:12001/renren-fast/            captcha.jpg?uuid=a7e7202f-cf5f-4953-860c-9b02b05bdf3  -原始
       #http://localhost:12001/api/                    captcha.jpg?uuid=a7e7202f-cf5f-4953-860c-9b02b05bdf35  -更改全局uri
       #http://renren-fast/api/                        captcha.jpg?uuid=a7e7202f-cf5f-4953-860c-9b02b05bdf35 -添加断言
-      #http://renren-fast/renren-fast/            captcha.jpg?uuid=dab2c3aa-a7f2-4d5c-8782-8032e1ae3e9e -
+      #http://renren-fast/renren-fast/            captcha.jpg?uuid=dab2c3aa-a7f2-4d5c-8782-8032e1ae3e9e
       routes:
+        - id: gulimall-product_route
+          uri: lb://gulimall-product
+          predicates: #满足条件的路径都转发到renren-fast服务
+            - Path=/api/product/**                                          #满足条件的进行地址转移
+          filters: #改变请求路径
+            #- RewritePath=/api/product/?(?<segment>.*),/product/$\{segment} #满足条件的进行重写,两种写法
+            - RewritePath=/api/?(?<segment>.*),/$\{segment}
+
         - id: renren-fast_route
           uri: lb://renren-fast
           predicates: #满足条件的路径都转发到renren-fast服务
