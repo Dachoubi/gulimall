@@ -5,17 +5,17 @@ spring:
       discovery:
         server-addr: 127.0.0.1:8848
     gateway:
+      #http://localhost:12001/renren-fast/            captcha.jpg?uuid=a7e7202f-cf5f-4953-860c-9b02b05bdf3  -原始
+      #http://localhost:12001/api/                    captcha.jpg?uuid=a7e7202f-cf5f-4953-860c-9b02b05bdf35  -更改全局uri
+      #http://renren-fast/api/                        captcha.jpg?uuid=a7e7202f-cf5f-4953-860c-9b02b05bdf35 -添加断言
+      #http://renren-fast/renren-fast/            captcha.jpg?uuid=dab2c3aa-a7f2-4d5c-8782-8032e1ae3e9e -
       routes:
-        - id: test_routh_1
-          uri: https://www.baidu.com/
-          predicates:
-            #以下是断言条件，必选全部符合条件
-            - Query=url,baidu
-        - id: test_routh_2
-          uri: https://www.qq.com/
-          predicates:
-            #以下是断言条件，必选全部符合条件
-            - Query=url,qq
+        - id: renren-fast_route
+          uri: lb://renren-fast
+          predicates: #满足条件的路径都转发到renren-fast服务
+            - Path=/api/**
+          filters: #改变请求路径
+            - RewritePath=/api/?(?<segment>.*),/renren-fast/$\{segment}
   application:
     name: gulimall-gateway
 
