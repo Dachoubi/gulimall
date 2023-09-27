@@ -23,7 +23,7 @@ import com.atguigu.common.utils.R;
  *
  * @author qiaotao
  * @email 2294073149@qq.com
- * @date 2023-09-22 23:03:49
+ * @date 2023-09-27 09:43:29
  */
 @RestController
 @RequestMapping("product/attrattrgrouprelation")

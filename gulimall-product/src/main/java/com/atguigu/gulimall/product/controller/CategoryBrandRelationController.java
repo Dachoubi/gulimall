@@ -11,33 +11,33 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.atguigu.gulimall.product.entity.SkuImagesEntity;
-import com.atguigu.gulimall.product.service.SkuImagesService;
+import com.atguigu.gulimall.product.entity.CategoryBrandRelationEntity;
+import com.atguigu.gulimall.product.service.CategoryBrandRelationService;
 import com.atguigu.common.utils.PageUtils;
 import com.atguigu.common.utils.R;
 
 
 
 /**
- * sku图片
+ * 品牌分类关联
  *
  * @author qiaotao
  * @email 2294073149@qq.com
  * @date 2023-09-27 09:43:29
  */
 @RestController
-@RequestMapping("product/skuimages")
-public class SkuImagesController {
+@RequestMapping("product/categorybrandrelation")
+public class CategoryBrandRelationController {
     @Autowired
-    private SkuImagesService skuImagesService;
+    private CategoryBrandRelationService categoryBrandRelationService;
 
     /**
      * 列表
      */
     @RequestMapping("/list")
-    //@RequiresPermissions("product:skuimages:list")
+    //@RequiresPermissions("product:categorybrandrelation:list")
     public R list(@RequestParam Map<String, Object> params){
-        PageUtils page = skuImagesService.queryPage(params);
+        PageUtils page = categoryBrandRelationService.queryPage(params);
 
         return R.ok().put("page", page);
     }
@@ -47,20 +47,20 @@ public class SkuImagesController {
      * 信息
      */
     @RequestMapping("/info/{id}")
-    //@RequiresPermissions("product:skuimages:info")
+    //@RequiresPermissions("product:categorybrandrelation:info")
     public R info(@PathVariable("id") Long id){
-		SkuImagesEntity skuImages = skuImagesService.getById(id);
+		CategoryBrandRelationEntity categoryBrandRelation = categoryBrandRelationService.getById(id);
 
-        return R.ok().put("skuImages", skuImages);
+        return R.ok().put("categoryBrandRelation", categoryBrandRelation);
     }
 
     /**
      * 保存
      */
     @RequestMapping("/save")
-    //@RequiresPermissions("product:skuimages:save")
-    public R save(@RequestBody SkuImagesEntity skuImages){
-		skuImagesService.save(skuImages);
+    //@RequiresPermissions("product:categorybrandrelation:save")
+    public R save(@RequestBody CategoryBrandRelationEntity categoryBrandRelation){
+		categoryBrandRelationService.save(categoryBrandRelation);
 
         return R.ok();
     }
@@ -69,9 +69,9 @@ public class SkuImagesController {
      * 修改
      */
     @RequestMapping("/update")
-    //@RequiresPermissions("product:skuimages:update")
-    public R update(@RequestBody SkuImagesEntity skuImages){
-		skuImagesService.updateById(skuImages);
+    //@RequiresPermissions("product:categorybrandrelation:update")
+    public R update(@RequestBody CategoryBrandRelationEntity categoryBrandRelation){
+		categoryBrandRelationService.updateById(categoryBrandRelation);
 
         return R.ok();
     }
@@ -80,9 +80,9 @@ public class SkuImagesController {
      * 删除
      */
     @RequestMapping("/delete")
-    //@RequiresPermissions("product:skuimages:delete")
+    //@RequiresPermissions("product:categorybrandrelation:delete")
     public R delete(@RequestBody Long[] ids){
-		skuImagesService.removeByIds(Arrays.asList(ids));
+		categoryBrandRelationService.removeByIds(Arrays.asList(ids));
 
         return R.ok();
     }

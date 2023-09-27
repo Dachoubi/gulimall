@@ -1,10 +1,13 @@
 package com.atguigu.gulimall.product.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
+
 import lombok.Data;
 
 /**
@@ -56,5 +59,13 @@ public class CategoryEntity implements Serializable {
 	 * 商品数量
 	 */
 	private Integer productCount;
+
+	/**
+	 * 新增 子菜单
+	 * 表中不存在这个字段，用来标识一下
+	 * 如果不进行标识，则会报错：java.sql.SQLSyntaxErrorException: Unknown column 'children' in 'field list'
+	 */
+	@TableField(exist = false)
+	private List<CategoryEntity> children;
 
 }
